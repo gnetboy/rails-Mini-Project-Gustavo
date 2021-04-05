@@ -1,0 +1,6 @@
+<h1><%= @student.to_s %></h1>
+<div>
+<%=link_to "Edit", edit_student_path%>
+<%=link_to "Back", students_path %>
+<%=button_to "Delete", @student, method: :delete, data: {confirm:'Are you sure?'}%>
+</div>
