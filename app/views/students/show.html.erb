@@ -1,6 +1,20 @@
-<h1><%= @student.to_s %></h1>
-<div>
-<%=link_to "Edit", edit_student_path%>
-<%=link_to "Back", students_path %>
-<%=button_to "Delete", @student, method: :delete, data: {confirm:'Are you sure?'}%>
+
+<div class="jumbotron">
+  <h1 class="display-5">
+    <%= @student.to_s %>
+    
+  </h1>
+  <p class="lead">
+    <%= @student.email %>  | 
+    <%= @student.phone %>  |  
+    
+
+  </p>
+  <br/>
+
+    <%= link_to 'Edit', edit_student_path, class:"btn btn-secondary" %>
+    <%= link_to 'Delete', @student, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <%= link_to 'Back', students_path, class:"btn btn-dark" %>
+   
+
 </div>

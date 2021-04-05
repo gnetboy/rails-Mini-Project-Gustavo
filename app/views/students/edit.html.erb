@@ -1,7 +1,7 @@
-<h1>Student Form</h1>
-<%= form_for(@student) do |f| %>
-  <%= f.label :first_name %>: <%= f.text_field :first_name %><br />
-  <%= f.label :last_name %>: <%= f.text_field :last_name %><br />
-  <br />
-  <%= f.submit %>
-<% end %>
+<h2>editing <%=@student.first_name %></h2>
+<br/>
+<%= render 'form', student: @student %>
+<br/>
+<%= link_to 'Show', @student, class:"btn btn-secondary" %>
+<%= link_to 'Delete', @student, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+<%= link_to 'Back', students_path, class:"btn btn-dark" %>

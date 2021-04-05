@@ -1,7 +1,5 @@
-<h1>Student Form</h1>
-<%= form_for(@student) do |f| %>
-  <%= f.label :first_name %>: <%= f.text_field :first_name %><br />
-  <%= f.label :last_name %>: <%= f.text_field :last_name %><br />
-  <br />
-  <%= f.submit %>
-<% end %>
+<h1>Add a new User</h1>
+<br/>
+<%= render 'form', student: @student %>
+<br/>
+<%= link_to "Back", students_path, class:"btn btn-dark" %>
