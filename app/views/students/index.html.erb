@@ -4,7 +4,7 @@
    <th>Full Name</th>
    <th>Email</th>
    <th>Phone</th>
-   <th></th>
+   <th><%=@students.size %></th>
    </tr>
   </thead>
 <tbody>
@@ -20,7 +20,7 @@
         <%= student.phone %> 
       </td>
      
-      <td> <%= link_to 'Delete', @student, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %> <%=link_to "Edit", edit_student_path(student), class:"btn btn-outline-success"%></td>
+      <td> <%= link_to 'Delete', student, method: :delete,  class: "btn btn-outline-danger btn-sm" %> <%=link_to "Edit", edit_student_path(student), class:"btn btn-outline-success"%></td>
     </tr>
 <% end %>
 </tbody>

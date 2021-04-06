@@ -51,3 +51,4 @@ group :test do
   gem 'webdrivers'
 end
 gem "simple_calendar", "~> 2.0"
+gem 'faker', '~> 1.6', '>= 1.6.6'

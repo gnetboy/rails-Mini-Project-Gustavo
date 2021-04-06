@@ -29,9 +29,7 @@ class StudentsController < ApplicationController
 
     def destroy
       @student = Student.find(params[:id]).destroy
-      respond_to do |format|
-        format.html {redirect_to students_url, notice: "Student was Removed"}
-      end
+      redirect_to students_url
     end
   
     private
