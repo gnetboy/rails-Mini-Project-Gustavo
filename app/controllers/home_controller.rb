@@ -1,25 +1,27 @@
 class HomeController < ApplicationController
+    include Memorable
     def index 
     
     end
 
   def search
     countries = find_country(params[:country])
-  
+
     unless countries
       flash[:alert] = 'Country not found'
-      return render action: :index
+      return render action: :search 
     end
-    @country = countries.first
+    
+    @country = countries.first 
+     Country.create(name:@country['name'],capital:@country['capital'],currency:@country['currencies'],timezone:@country['timezones'])
     @weather = find_weather(@country['capital'], @country['alpha2Code'])
+    
   end
 
   def find_weather(city, country_code)
     query = URI.encode("#{city},#{country_code}")
 
-    request_api(
-      "https://community-open-weather-map.p.rapidapi.com/forecast?q=#{query}"
-    )
+    request_api("https://community-open-weather-map.p.rapidapi.com/forecast?q=#{query}")
   end
 
 private

@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_05_080946) do
+ActiveRecord::Schema.define(version: 2021_04_08_074835) do
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.string "capital"
+    t.string "currency"
+    t.string "timezone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "countries_students", id: false, force: :cascade do |t|
+    t.integer "country_id", null: false
+    t.integer "student_id", null: false
+  end
 
   create_table "students", force: :cascade do |t|
     t.string "first_name"
