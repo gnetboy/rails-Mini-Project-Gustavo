@@ -52,3 +52,4 @@ group :test do
 end
 gem "simple_calendar", "~> 2.0"
 gem 'faker', '~> 1.6', '>= 1.6.6'
+gem "devise", "~> 4.7"

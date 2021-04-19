@@ -1,4 +1,6 @@
 class Country < ApplicationRecord
+    belongs_to :user 
+    has_many :country_students
+    has_many :students, through: :country_students 
 
-    has_and_belongs_to_many :students 
 end

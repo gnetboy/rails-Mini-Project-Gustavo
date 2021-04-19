@@ -1,9 +1,11 @@
+<br>
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
    <tr>
    <th>Full Name</th>
    <th>Email</th>
    <th>Phone</th>
+   <th>User Id</th>
    <th><%=@students.size %></th>
    </tr>
   </thead>
@@ -11,7 +13,7 @@
 <% @students.each do |student| %>
   <tr>
       <td>
-        <%= link_to student.to_s, student_path(student) %>
+        <%= link_to student, student_path(student) %>
       </td>
       <td>
         <%= student.email %>
@@ -19,7 +21,9 @@
       <td>
         <%= student.phone %> 
       </td>
-     
+      <td>
+        <%= student.user_id%> 
+      </td>
       <td> <%= link_to 'Delete', student, method: :delete,  class: "btn btn-outline-danger btn-sm" %> <%=link_to "Edit", edit_student_path(student), class:"btn btn-outline-success"%></td>
     </tr>
 <% end %>
