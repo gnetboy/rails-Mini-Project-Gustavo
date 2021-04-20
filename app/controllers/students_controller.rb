@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
     before_action :authenticate_user!
     before_action :correct_user, only: [:edit,:update, :destroy]
     def index
-      @students = Student.all 
+      @students = current_user.students
     end
   
     def show
@@ -21,10 +21,10 @@ class StudentsController < ApplicationController
      respond_to do |format|
       if @student.save
         format.html { redirect_to @student, notice: 'Successfully created.' }
-        format.json { render :show, status: :created, location: @student }
+       # format.json { render :show, status: :created, location: @student }
       else
         format.html { render :new }
-        format.json { render json: @friend.errors, status: :unprocessable_entity }
+        #format.json { render json: @friend.errors, status: :unprocessable_entity }
       end
     end
 

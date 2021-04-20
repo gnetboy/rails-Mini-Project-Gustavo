@@ -1,38 +1,36 @@
 class CountriesController < ApplicationController
-      include Memorable
-   
-    def index
-      @countries = Country.all 
-    end
+        #include Memorable
+
+        
+        def index
+          @countries = Country.all 
+        end
+        def new
+          @country = Country.new
+        end
+        
+        def search
+          countries = find_country(params[:country])
+          @country = countries.first
+          @weather = find_weather(@country['capital'], @country['alpha2Code'])
+          render :show
+        end
+        def create
+          @country = Country.create(name:@country['name'], capital:@country['capital'], currency:@country['currencies'], timezone:@country['timezones'])
+        end
   
-    def show
-      @country =country.find(params[:id])
-    end
-  
-    def new
-      @country = Country.new
-    end
-  
-    def create
-      @country = Country.create(country_params)
-      redirect_to country_path(@country)
-    end
+   def show
+      @country = Country.find(params[:id])
+    end 
   
     def edit
-      @country = country.find(params[:id])
+      @country = Country.find(params[:id])
     end
   
     def update
-      @country = country.find(params[:id])
+      @country = Country.find(params[:id])
       @country.update(country_params)
       redirect_to country_path(@country)
-    end
-    def search
-      destino = find_country(params[:country])
-      @country = destino.first 
-      render action: :search 
-      Country.create(name:@country['name'],capital:@country['capital'],currency:@country['currencies'],timezone:@country['timezones'])
-      @weather = find_weather(@country['capital'], @country['alpha2Code'])
     end
       
       
