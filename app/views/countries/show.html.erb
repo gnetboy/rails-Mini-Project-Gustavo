@@ -4,10 +4,9 @@
       <h4>Visit <%= @country['name'] %></h4>
       <dl>
         <dt>Capital</dt>
-        <dd><%= @country['capital'] %></dd>
+        <dd><%= @country['capital']%></dd>
         <dt>Currency</dt>
-        <dd><%= @country['currencies'].join(', ') %></dd>
-
+        <dd><%= @country['currencies'].join(', ')%></dd>
         <dt>Timezone(s)</dt>
         <dd><%= @country['timezones'].join(', ') %></dd>
       </dl>

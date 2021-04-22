@@ -1,36 +1,35 @@
 class CountriesController < ApplicationController
-        #include Memorable
+        include Memorable 
 
         
         def index
           @countries = Country.all 
         end
-        def new
-          @country = Country.new
-        end
+      def new
+        @country = Country.new
+      end
         
         def search
-          countries = find_country(params[:country])
-          @country = countries.first
+          nation = find_country(params[:country]) #if nation.nil? render :index
+          @country = nation.first
+          @country = Country.create(name:@country['name'], capital:@country['capital'], currency:@country['currencies'], timezone:@country['timezones'])
+        
           @weather = find_weather(@country['capital'], @country['alpha2Code'])
           render :show
         end
-        def create
-          @country = Country.create(name:@country['name'], capital:@country['capital'], currency:@country['currencies'], timezone:@country['timezones'])
-        end
+        
   
-   def show
+     def show
       @country = Country.find(params[:id])
-    end 
-  
+     end 
+     
     def edit
       @country = Country.find(params[:id])
     end
   
-    def update
-      @country = Country.find(params[:id])
-      @country.update(country_params)
-      redirect_to country_path(@country)
+    def destroy
+      @country = Country.find(params[:id]).destroy
+      redirect_to countries_url
     end
       
       
@@ -48,13 +47,14 @@ class CountriesController < ApplicationController
         'X-RapidAPI-Host' => URI.parse(url).host,
         'X-RapidAPI-Key' => ENV.fetch('RAPID_API_KEY')} )
   
-    return nil if response.status != 200
-  
     JSON.parse(response.body)
   end
   
   def find_country(name)
     request_api("https://restcountries-v1.p.rapidapi.com/name/#{URI.encode(name)}")
   end
+  # def country_params
+  #   params.require(:country).permit(:name, :capital, :currency, :timezone)
+  # end
  
 end

@@ -20,12 +20,18 @@
     <body>
 
               <%= render 'home/header' %>
-               <div class="container"> 
-                   <br>
-               <% if notice %>
+                
+                <% if notice %>
                  <%= render 'layouts/alerts' %>
                <% end %>
-        
+               <div class="container"> 
+               <% if user_signed_in? %>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                 user:  <%= current_user.email %>
+              <% end %>
+               </div>
+                   <br>
+             
                 <%= yield %>
                </div>
 
