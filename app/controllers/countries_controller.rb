@@ -10,23 +10,21 @@ class CountriesController < ApplicationController
       end
         
         def search
-          nation = find_country(params[:country]) #if nation.nil? render :index
-          @country = nation.first
-          @country = Country.create(name:@country['name'], capital:@country['capital'], currency:@country['currencies'], timezone:@country['timezones'])
-        
+          nation = Restcountry::Country.find_by_name(params[:country])
+          @country = Country.create(name:nation.name, capital:nation.capital, currency:nation.currencies, timezone:nation.timezones)
           @weather = find_weather(@country['capital'], @country['alpha2Code'])
           render :show
         end
-        
+        def create
+          @country = Country.new(country_params)
+          @country.save
+        end
   
      def show
       @country = Country.find(params[:id])
      end 
      
-    def edit
-      @country = Country.find(params[:id])
-    end
-  
+
     def destroy
       @country = Country.find(params[:id]).destroy
       redirect_to countries_url
@@ -50,11 +48,8 @@ class CountriesController < ApplicationController
     JSON.parse(response.body)
   end
   
-  def find_country(name)
-    request_api("https://restcountries-v1.p.rapidapi.com/name/#{URI.encode(name)}")
+  def country_params
+    params.require(:country).permit(:name, :capital, :currency, :timezone)
   end
-  # def country_params
-  #   params.require(:country).permit(:name, :capital, :currency, :timezone)
-  # end
  
 end
