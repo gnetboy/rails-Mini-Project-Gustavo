@@ -8,11 +8,29 @@ class CountriesController < ApplicationController
       def new
         @country = Country.new
       end
+
+      def trip
+        if !current_user.country_ids.include?  params[:id].to_i
+          trip = current_user.country_users.build(country_id: params[:id], start_date: params[:start_date] , end_date: params[:end_date])
+          if trip.save
+            flash[:notice] = "Trip created" 
+          else
+            flash[:notice] =  trip.errors.full_messages.to_sentence
+          end
+        else
+          @country = CountryUser.find_by(country_id: params[:id], user_id: current_user.id)
+          
+           CountryUser.delete(@country.id)
+        
+              end
+          redirect_to countries_path
+      end
         
         def search
           nation = Restcountry::Country.find_by_name(params[:country])
-          @country = Country.create(name:nation.name, capital:nation.capital, currency:nation.currencies, timezone:nation.timezones)
+          @country = Country.create(name:nation.name, capital:nation.capital, currency:nation.currencies, timezone:nation.timezones) 
           @weather = find_weather(@country['capital'], @country['alpha2Code'])
+          byebug
           render :show
         end
         def create

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_18_201438) do
+ActiveRecord::Schema.define(version: 2021_04_23_222447) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -21,11 +21,13 @@ ActiveRecord::Schema.define(version: 2021_04_18_201438) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "country_students", id: false, force: :cascade do |t|
-    t.integer "country_id", null: false
-    t.integer "student_id", null: false
+  create_table "country_users", force: :cascade do |t|
+    t.integer "country_id"
+    t.integer "user_id"
     t.date "start_date"
     t.date "end_date"
+    t.index ["country_id"], name: "index_country_users_on_country_id"
+    t.index ["user_id"], name: "index_country_users_on_user_id"
   end
 
   create_table "students", force: :cascade do |t|

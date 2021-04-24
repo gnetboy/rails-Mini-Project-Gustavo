@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "students#index"
   get 'search' => 'countries#search'
+  post "/users/:user_id/countries/:id/save" , to: "countries#trip" , as: :trip_plan
   resources :students
   resources :countries, only: [:index, :show, :destroy]
   resources :home 
