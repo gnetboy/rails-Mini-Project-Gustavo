@@ -7,7 +7,7 @@
               <div class="text-center" class="card-body" style="padding: 10px">
               <div class="card-header"> <%=link_to "#{c.name}", country_path(c) %></div>
               <div class="card-header"><%= c.capital %></div>
-               <div class="card-text"><%= c.currency %><br><%= c.timezone %></div>
+               <div class="card-text"><%= c.currency.gsub(/[\[\]\\=>}{,"]/,' ') %><br><%= c.timezone.gsub(/[\[\]\\=>}{,"]/,'') %></div>
                <% if !current_user.countries.include? c %>
                     <%= form_with(url: trip_plan_path(current_user , c)) do |f| %>
                     <%= f.label :start_date  %>

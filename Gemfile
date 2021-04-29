@@ -53,3 +53,6 @@ end
 gem "simple_calendar", "~> 2.0"
 gem 'restcountry'
 gem "devise", "~> 4.7"
+gem 'omniauth-google-oauth2'
+gem 'omniauth', '~> 2.0'
+gem 'omniauth-rails_csrf_protection'

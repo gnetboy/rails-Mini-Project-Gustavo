@@ -1,13 +1,14 @@
 class CountriesController < ApplicationController
-        include Memorable 
+
 
         
         def index
           @countries = Country.all 
         end
-      def new
+      
+        def new
         @country = Country.new
-      end
+        end
 
       def trip
         if !current_user.country_ids.include?  params[:id].to_i
@@ -29,10 +30,11 @@ class CountriesController < ApplicationController
         def search
           nation = Restcountry::Country.find_by_name(params[:country])
           @country = Country.create(name:nation.name, capital:nation.capital, currency:nation.currencies, timezone:nation.timezones) 
-          @weather = find_weather(@country['capital'], @country['alpha2Code'])
-          byebug
+          @weather = find_weather(@country['capital'])
+          #@weather = find_weather(@country['capital'], @country['alpha2Code'])
           render :show
         end
+
         def create
           @country = Country.new(country_params)
           @country.save
@@ -48,13 +50,16 @@ class CountriesController < ApplicationController
       redirect_to countries_url
     end
       
-      
-  
-    def find_weather(city, country_code)
-      query = URI.encode("#{city},#{country_code}")
-  
-      request_api("https://community-open-weather-map.p.rapidapi.com/forecast?q=#{query}")
+    def find_weather(city)
+      query = URI.encode("#{city}")
+      request_api("https://community-open-weather-map.p.rapidapi.com/weather?q=#{query}")
     end
+  
+    # def find_weather(city, country_code)
+    #   query = URI.encode("#{city},#{country_code}")
+    #  # request_api("https://community-open-weather-map.p.rapidapi.com/forecast?q=#{query}")
+    # end
+     
   
   private
   

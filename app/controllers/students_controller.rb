@@ -3,7 +3,12 @@ class StudentsController < ApplicationController
     before_action :authenticate_user!
     before_action :correct_user, only: [:edit,:update, :destroy]
     def index
-      @students = current_user.students
+      #"/users/user_id/students"
+      if params[:user_id] && @user = User.find=by(params[:user[id]])
+        @students = @user.students 
+        else
+      @students = Student.all 
+        end
     end
   
     def show
