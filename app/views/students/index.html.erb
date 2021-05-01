@@ -14,7 +14,7 @@
 <% @students.each do |student| %>
   <tr>
       <td>
-        <%= link_to student, student_path(student) %>
+        <%= link_to student, user_student_path(current_user.id, student.id) %>
       </td>
       <td>
         <%= student.email %>

@@ -4,15 +4,15 @@ class StudentsController < ApplicationController
     before_action :correct_user, only: [:edit,:update, :destroy]
     def index
       #"/users/user_id/students"
-      if params[:user_id] && @user = User.find=by(params[:user[id]])
-        @students = @user.students 
+      if params[:user_id] 
+        @students = User.find(params[:user_id]).students 
         else
-      @students = Student.all 
+         @students = current_user.students 
         end
     end
   
     def show
-     
+       @student = Student.find(params[:id])
     end
   
     def new
@@ -47,6 +47,7 @@ class StudentsController < ApplicationController
       @student = Student.find(params[:id]).destroy
       redirect_to students_url
     end
+
   def correct_user
     @student = current_user.students.find_by(id: params[:id])
     redirect_to students_path, notice: "Action not allowed" if @student.nil?

@@ -5,7 +5,7 @@
          
              <div class="nav-item">
                <%=link_to "Students", 
-               students_path, 
+              user_students_path(current_user.id), 
                class:"nav-link"%>
              </div> 
               <div class="nav-item">
@@ -31,13 +31,14 @@
             <div class="form-group">
               <%= text_field_tag :country, nil, placeholder: "search for a country", class: 'form_control' %>
               <%= button_tag 'Search', class:"btn btn-outline-success" %>
-            <div>
          <% end %>
+            <div>
         </div>
            <% else  %>
            <div class="nav-item">
            <%=link_to "Sign Up", 
            new_user_registration_path,
+             
            class:"nav-link"%>
            </div>
            
