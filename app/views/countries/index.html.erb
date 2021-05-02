@@ -1,13 +1,12 @@
 <h2>Destinations</h2>
      <div class="row row-cols-1 row-cols-md-4 g-4">
-                   <%@countries.each do |c|  %>
+                <%@countries.each do |c|  %>
            <div class="col">
-             
-            <div class="card" style="width: 15rem; margin: 20px">
+             <div class="card" style="width: 15rem; margin: 20px">
               <div class="text-center" class="card-body" style="padding: 10px">
-              <div class="card-header"> <%=link_to "#{c.name}", country_path(c) %></div>
-              <div class="card-header"><%= c.capital %></div>
-               <div class="card-text"><%= c.currency.gsub(/[\[\]\\=>}{,"]/,' ') %><br><%= c.timezone.gsub(/[\[\]\\=>}{,"]/,'') %></div>
+               	<div class="card-header"> <%=link_to "#{c.name}", user_country_path(current_user.id,c.id) %></div>
+               	  <div class="card-header"><%= c.capital %></div>
+                <div class="card-text"><%= c.currency.gsub(/[\[\]\\=>}{,"]/,' ') %><br><%= c.timezone.gsub(/[\[\]\\=>}{,"]/,'') %></div>
                <% if !current_user.countries.include? c %>
                     <%= form_with(url: trip_plan_path(current_user , c)) do |f| %>
                     <%= f.label :start_date  %>
@@ -16,10 +15,10 @@
                     <%= f.date_field :end_date %>
                     <%= f.submit "save"  %>
                     <% end %>
-              <% else %>
-              <%= button_to 'Unsave', trip_plan_path(current_user , c),  class: "btn btn-danger" %>
-              <% end %>
-               <%= button_to 'Delete', c,  method: :delete, class: "btn btn-danger" %>
+               <% else %>
+               <%= button_to 'Unsave', trip_plan_path(current_user , c),  class: "btn btn-danger" %>
+               <% end %>
+               <%= button_to 'Delete', user_country_path(current_user.id, c.id),  method: :delete, class: "btn btn-danger" %>
      
          </div>
         </div>

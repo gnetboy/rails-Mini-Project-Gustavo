@@ -9,15 +9,12 @@
         <dd><%= @country.timezone.gsub(/[\[\]\\=>}{,"]/,'')%></dd>
       </dl>
   
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 30rem;">
   <div class="card-header">
       Weather Info
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item"><strong>Temperature</strong> <%= to_fahrenheit @weather['main']['temp'] %></li>
-    <li class="list-group-item"><strong>Min</strong> <%= to_fahrenheit @weather['main']['temp_min'] %> <strong>Max</strong> <%= to_fahrenheit @weather['main']['temp_max'] %></li>
-    <li class="list-group-item"><strong>Pressure</strong> <%= @weather['main']['pressure'] %></li>
-    <li class="list-group-item"><strong>Humidity</strong> <%= @weather['main']['humidity'] %></li>
+    <li class="list-group-item"><%= @country.weather.gsub(/[\[\]\\=>}{,"]/,' ') %> </li>
   </ul>
 </div>
       

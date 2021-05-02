@@ -25,7 +25,7 @@
       <td>
         <%= student.user_id%> 
       </td>
-      <td> <%= link_to 'Delete', student, method: :delete,  class: "btn btn-outline-danger btn-sm" %> <%=link_to "Edit", edit_student_path(student), class:"btn btn-outline-success"%></td>
+      <td> <%= button_to 'Delete', user_student_path(current_user.id, student.id), method: :delete,  class: "btn btn-outline-danger btn-sm" %> <%=link_to "Edit", edit_student_path(student), class:"btn btn-outline-success"%></td>
     </tr>
 <% end %>
 </tbody>

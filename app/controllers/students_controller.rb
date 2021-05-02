@@ -2,6 +2,7 @@ class StudentsController < ApplicationController
   before_action :set_student, only:[:show, :edit, :update, :destroy]
     before_action :authenticate_user!
     before_action :correct_user, only: [:edit,:update, :destroy]
+    
     def index
       #"/users/user_id/students"
       if params[:user_id] 
