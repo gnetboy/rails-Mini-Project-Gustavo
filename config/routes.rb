@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :countries, only: [:index, :show, :destroy] 
   end
   resources :students, only: [:index, :show, :new, :create, :edit, :update]
+  resources :countries, only: [:index, :show, :new, :create]
   root  to: "home#index"
   post "/users/:user_id/countries/:id/save" , to: "countries#trip" , as: :trip_plan
   get 'search' => 'countries#search'

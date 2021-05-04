@@ -31,16 +31,16 @@
             <div class="form-group">
               <%= text_field_tag :country, nil, placeholder: "search for a country", class: 'form_control' %>
               <%= button_tag 'Search', class:"btn btn-outline-success" %>
-         <% end %>
             <div>
+         <% end %>
         </div>
            <% else  %>
            <div class="nav-item">
            <%=link_to "Sign Up", 
            new_user_registration_path,
-             
            class:"nav-link"%>
            </div>
+             
            
             <div class="nav-item">
            <%=link_to "Sign In", 

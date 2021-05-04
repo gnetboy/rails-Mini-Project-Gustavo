@@ -6,7 +6,7 @@
    <th>Full Name</th>
    <th>Email</th>
    <th>Phone</th>
-   <th>Current User</th>
+   <th>Trip Planner</th>
    <th><%=@students.size %></th>
    </tr>
   </thead>
@@ -23,7 +23,7 @@
         <%= student.phone %> 
       </td>
       <td>
-        <%= student.user_id%> 
+        <%= current_user.email%> 
       </td>
       <td> <%= button_to 'Delete', user_student_path(current_user.id, student.id), method: :delete,  class: "btn btn-outline-danger btn-sm" %> <%=link_to "Edit", edit_student_path(student), class:"btn btn-outline-success"%></td>
     </tr>

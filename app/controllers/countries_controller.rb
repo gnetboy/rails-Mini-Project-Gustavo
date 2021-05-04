@@ -6,17 +6,17 @@ class CountriesController < ApplicationController
     if params[:user_id] 
       @countries = User.find(params[:user_id]).countries  
     else 
-      @countries = Country.all 
+      @countries = Country.all
     end
   end
   
   def new
-    @country = Country.new
+    @country = current_user.countries.build
   end
   
   def create
-    @country = Country.new(country_params)
-    @country.save
+    @country = current_user.countries.build(country_params)
+    @country.save 
   end
  
    def show
@@ -41,10 +41,10 @@ class CountriesController < ApplicationController
       def search
         nation = Restcountry::Country.find_by_name(params[:country])
         climate = find_weather(nation.capital)
-        @country = Country.create(name:nation.name, capital:nation.capital, currency:nation.currencies, weather:climate,timezone:nation.timezones) 
-         if @country.save
-          render :show
-         end     
+        @country = Country.create(name:nation.name, capital:nation.capital, currency:nation.currencies, weather:climate, timezone:nation.timezones) 
+         current_user.countries << @country
+        render :show
+         
       end
           
         
